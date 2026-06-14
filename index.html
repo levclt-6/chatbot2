@@ -1,0 +1,695 @@
+<!DOCTYPE html>
+<html lang="ko" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>성민안경 - 당신의 선명한 일상을 디자인합니다</title>
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- FontAwesome CDN for Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <!-- Pretendard Web Font -->
+    <link rel="stylesheet" as="style" crossorigin href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/static/pretendard.min.css" />
+    <!-- Marked.js for Markdown Parsing -->
+    <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
+    <style>
+        body {
+            font-family: "Pretendard Variable", Pretendard, -apple-system, BlinkMacSystemFont, system-ui, Roboto, "Helvetica Neue", "Segoe UI", "Apple SD Gothic Neo", "Noto Sans KR", "Malgun Gothic", "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", sans-serif;
+        }
+        .tab-content {
+            display: none;
+            opacity: 0;
+            transition: opacity 0.4s ease-in-out;
+        }
+        .tab-content.active {
+            display: grid;
+            opacity: 1;
+        }
+        /* Markdown Parsing Styles for Rich Text UX */
+        .markdown-rendered h1 {
+            font-size: 1.5rem;
+            font-weight: 800;
+            color: #111827;
+            margin-top: 1.5rem;
+            margin-bottom: 0.75rem;
+            border-bottom: 2px solid #E5E7EB;
+            padding-bottom: 0.375rem;
+        }
+        .markdown-rendered h2 {
+            font-size: 1.25rem;
+            font-weight: 700;
+            color: #1F2937;
+            margin-top: 1.25rem;
+            margin-bottom: 0.5rem;
+        }
+        .markdown-rendered h3 {
+            font-size: 1.125rem;
+            font-weight: 700;
+            color: #374151;
+            margin-top: 1rem;
+            margin-bottom: 0.375rem;
+        }
+        .markdown-rendered p {
+            margin-bottom: 0.875rem;
+            line-height: 1.7;
+            color: #4B5563;
+        }
+        .markdown-rendered ul {
+            list-style-type: disc;
+            padding-left: 1.5rem;
+            margin-bottom: 1rem;
+            space-y: 0.25rem;
+        }
+        .markdown-rendered ol {
+            list-style-type: decimal;
+            padding-left: 1.5rem;
+            margin-bottom: 1rem;
+            space-y: 0.25rem;
+        }
+        .markdown-rendered li {
+            margin-bottom: 0.375rem;
+            color: #4B5563;
+        }
+        .markdown-rendered strong {
+            font-weight: 700;
+            color: #007BFF;
+        }
+        .markdown-rendered blockquote {
+            border-left: 4px solid #007BFF;
+            padding-left: 1rem;
+            color: #4B5563;
+            font-style: italic;
+            margin: 1.25rem 0;
+            background-color: #F3F4F6;
+            padding-top: 0.75rem;
+            padding-bottom: 0.75rem;
+            border-radius: 0 0.5rem 0.5rem 0;
+        }
+        .markdown-rendered hr {
+            border: 0;
+            border-top: 1px solid #E5E7EB;
+            margin: 1.5rem 0;
+        }
+    </style>
+</head>
+<body class="text-gray-800 bg-white antialiased">
+
+    <!-- 1. Header Section -->
+    <header class="sticky top-0 z-50 bg-white/90 backdrop-blur-md shadow-sm border-b border-gray-100 transition-all duration-300">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex items-center justify-between h-20">
+                <!-- Logo -->
+                <div class="flex-shrink-0">
+                    <a href="#" class="text-2xl font-bold tracking-tight text-[#007BFF]">
+                        성민안경
+                    </a>
+                </div>
+                <!-- Desktop Navigation -->
+                <nav class="hidden md:flex space-x-10 font-medium text-gray-600">
+                    <a href="#about" class="hover:text-[#007BFF] transition-colors duration-200">About</a>
+                    <a href="#products" class="hover:text-[#007BFF] transition-colors duration-200">Products</a>
+                    <a href="#counselor" class="hover:text-[#007BFF] transition-colors duration-200">Counselor</a>
+                    <a href="#services" class="hover:text-[#007BFF] transition-colors duration-200">Services</a>
+                    <a href="#booking" class="hover:text-[#007BFF] transition-colors duration-200">Booking</a>
+                </nav>
+                <!-- Mobile Menu Button -->
+                <div class="md:hidden">
+                    <button type="button" id="mobile-menu-btn" class="text-gray-600 hover:text-[#007BFF] focus:outline-none" aria-label="메뉴 열기">
+                        <i class="fas fa-bars text-2xl"></i>
+                    </button>
+                </div>
+            </div>
+        </div>
+        <!-- Mobile Navigation Dropdown -->
+        <div id="mobile-menu" class="hidden md:hidden bg-white border-b border-gray-100 px-4 pt-2 pb-6 space-y-3 shadow-lg">
+            <a href="#about" class="block font-medium text-gray-600 hover:text-[#007BFF] py-2">About</a>
+            <a href="#products" class="block font-medium text-gray-600 hover:text-[#007BFF] py-2">Products</a>
+            <a href="#counselor" class="block font-medium text-gray-600 hover:text-[#007BFF] py-2">Counselor</a>
+            <a href="#services" class="block font-medium text-gray-600 hover:text-[#007BFF] py-2">Services</a>
+            <a href="#booking" class="block font-medium text-gray-600 hover:text-[#007BFF] py-2">Booking</a>
+        </div>
+    </header>
+
+    <!-- 2. Hero Section -->
+    <section class="relative h-[calc(100vh-5rem)] min-h-[500px] flex items-center justify-center bg-cover bg-center" style="background-image: url('https://images.unsplash.com/photo-1574258495973-f010dfbb5371?auto=format&fit=crop&w=1920&q=80');">
+        <!-- Overlay -->
+        <div class="absolute inset-0 bg-black/50"></div>
+        <!-- Content -->
+        <div class="relative z-10 text-center px-4 sm:px-6 lg:px-8">
+            <h1 class="text-3xl sm:text-5xl lg:text-6xl font-extrabold text-white leading-tight drop-shadow-md">
+                당신의 선명한 일상을 디자인합니다.<br class="hidden sm:inline">
+                <span class="text-[#007BFF] bg-white px-3 py-1 rounded-md sm:bg-transparent sm:p-0">성민안경</span>
+            </h1>
+            <p class="mt-4 text-gray-200 text-base sm:text-lg max-w-xl mx-auto">15년 경력의 신뢰성과 첨단 정밀 장비로 편안한 시생활을 제안합니다.</p>
+            <div class="mt-10">
+                <a href="#booking" class="inline-flex items-center justify-center px-8 py-4 border border-transparent text-lg font-semibold rounded-full text-white bg-[#007BFF] hover:bg-[#0062cc] transform hover:-translate-y-0.5 transition-all duration-200 shadow-lg hover:shadow-xl">
+                    예약하기
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- 3. About Us Section -->
+    <section id="about" class="py-24 bg-[#F8F9FA]">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center max-w-3xl mx-auto mb-16">
+                <h2 class="text-3xl font-bold tracking-tight text-gray-900 sm:text-4xl">소개</h2>
+                <div class="h-1 w-12 bg-[#007BFF] mx-auto mt-3"></div>
+                <p class="mt-4 text-lg text-gray-500">성민안경은 오랜 경험과 첨단 기술력을 바탕으로 고객의 눈 건강을 최우선으로 생각합니다.</p>
+            </div>
+            <!-- 3-Column Grid Layout -->
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+                <!-- Item 1 -->
+                <div class="bg-white p-8 rounded-2xl shadow-sm hover:shadow-md transition-shadow duration-300 text-center border border-gray-100">
+                    <div class="inline-flex items-center justify-center w-16 h-16 rounded-full bg-blue-50 text-[#007BFF] mb-6">
+                        <i class="fas fa-user-md text-2xl"></i>
+                    </div>
+                    <h3 class="text-xl font-bold text-gray-950 mb-3">전문 안경사</h3>
+                    <p class="text-gray-600 leading-relaxed">15년 경력의 보건복지부 발행 국가면허 소지 안경사가 직접 상담하고 정확하게 시각 솔루션을 제공합니다.</p>
+                </div>
+                <!-- Item 2 -->
+                <div class="bg-white p-8 rounded-2xl shadow-sm hover:shadow-md transition-shadow duration-300 text-center border border-gray-100">
+                    <div class="inline-flex items-center justify-center w-16 h-16 rounded-full bg-blue-50 text-[#007BFF] mb-6">
+                        <i class="fas fa-laptop-medical text-2xl"></i>
+                    </div>
+                    <h3 class="text-xl font-bold text-gray-950 mb-3">최신 검안 장비</h3>
+                    <p class="text-gray-600 leading-relaxed">오차 없는 정밀 측정을 위해 최신식 3D 입체 검안 기기를 전격 도입하여 복잡한 시각 왜곡을 잡아냅니다.</p>
+                </div>
+                <!-- Item 3 -->
+                <div class="bg-white p-8 rounded-2xl shadow-sm hover:shadow-md transition-shadow duration-300 text-center border border-gray-100">
+                    <div class="inline-flex items-center justify-center w-16 h-16 rounded-full bg-blue-50 text-[#007BFF] mb-6">
+                        <i class="fas fa-receipt text-2xl"></i>
+                    </div>
+                    <h3 class="text-xl font-bold text-gray-950 mb-3">정직한 가격</h3>
+                    <p class="text-gray-600 leading-relaxed">거품을 완전히 뺀 정찰제 운영 철학을 유지하며 소비자가 납득하고 신뢰할 수 있는 합리적인 비용만을 안내합니다.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 4. Products Gallery Section -->
+    <section id="products" class="py-24 bg-white">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center max-w-3xl mx-auto mb-12">
+                <h2 class="text-3xl font-bold tracking-tight text-gray-900 sm:text-4xl">제품 갤러리</h2>
+                <div class="h-1 w-12 bg-[#007BFF] mx-auto mt-3"></div>
+                <p class="mt-4 text-lg text-gray-500">엄선된 프리미엄 라인업과 개인 맞춤형 시력 개선 제품을 제공합니다.</p>
+            </div>
+            <!-- Tab Menu Navigation -->
+            <div class="flex justify-center mb-12">
+                <div class="inline-flex rounded-lg bg-gray-100 p-1">
+                    <button type="button" class="tab-btn px-6 py-2.5 rounded-md font-medium text-sm transition-all duration-200 bg-white text-gray-900 shadow-sm" data-tab="trendy">
+                        트렌디 안경테
+                    </button>
+                    <button type="button" class="tab-btn px-6 py-2.5 rounded-md font-medium text-sm transition-all duration-200 text-gray-500 hover:text-gray-900" data-tab="sunglasses">
+                        선글라스
+                    </button>
+                    <button type="button" class="tab-btn px-6 py-2.5 rounded-md font-medium text-sm transition-all duration-200 text-gray-500 hover:text-gray-900" data-tab="lenses">
+                        기능성 렌즈
+                    </button>
+                </div>
+            </div>
+            <!-- Tab Contents -->
+            <div>
+                <!-- Tab 1: Trendy Frames -->
+                <div id="trendy" class="tab-content active grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8">
+                    <div class="overflow-hidden rounded-xl bg-gray-100 border border-gray-100 group shadow-sm hover:shadow-md transition-shadow">
+                        <img src="https://images.unsplash.com/photo-1511499767150-a48a237f0083?auto=format&fit=crop&w=600&q=80" alt="트렌디 안경테 1" class="w-full h-64 object-cover group-hover:scale-105 transition-transform duration-300">
+                        <div class="p-5 bg-white"><h4 class="font-bold text-lg text-gray-900">클래식 라운드 메탈테</h4><p class="text-gray-500 text-sm mt-1">티타늄 소재의 초경량 구조로 하루 종일 가벼운 착용감을 드립니다.</p></div>
+                    </div>
+                    <div class="overflow-hidden rounded-xl bg-gray-100 border border-gray-100 group shadow-sm hover:shadow-md transition-shadow">
+                        <img src="https://images.unsplash.com/photo-1591076482161-42ce6da69f67?auto=format&fit=crop&w=600&q=80" alt="트렌디 안경테 2" class="w-full h-64 object-cover group-hover:scale-105 transition-transform duration-300">
+                        <div class="p-5 bg-white"><h4 class="font-bold text-lg text-gray-900">모던 아세테이트 뿔테</h4><p class="text-gray-500 text-sm mt-1">트렌디한 볼드 디자인으로 일상복에 어울리는 자연스러운 실루엣입니다.</p></div>
+                    </div>
+                    <div class="overflow-hidden rounded-xl bg-gray-100 border border-gray-100 group shadow-sm hover:shadow-md transition-shadow">
+                        <img src="https://images.unsplash.com/photo-1508296695146-257a814070b4?auto=format&fit=crop&w=600&q=80" alt="트렌디 안경테 3" class="w-full h-64 object-cover group-hover:scale-105 transition-transform duration-300">
+                        <div class="p-5 bg-white"><h4 class="font-bold text-lg text-gray-900">하프프레임 하금테</h4><p class="text-gray-500 text-sm mt-1">지적이고 세련된 세미비즈니스 룩에 최적화된 클래식 스타일입니다.</p></div>
+                    </div>
+                </div>
+                <!-- Tab 2: Sunglasses -->
+                <div id="sunglasses" class="tab-content grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8">
+                    <div class="overflow-hidden rounded-xl bg-gray-100 border border-gray-100 group shadow-sm hover:shadow-md transition-shadow">
+                        <img src="https://images.unsplash.com/photo-1511556532299-8f662fc26c06?auto=format&fit=crop&w=600&q=80" alt="선글라스 1" class="w-full h-64 object-cover group-hover:scale-105 transition-transform duration-300">
+                        <div class="p-5 bg-white"><h4 class="font-bold text-lg text-gray-900">에비에이터 보잉 선글라스</h4><p class="text-gray-500 text-sm mt-1">우수한 자외선 차단 필터가 탑재된 유행을 타지 않는 패션 아이템입니다.</p></div>
+                    </div>
+                    <div class="overflow-hidden rounded-xl bg-gray-100 border border-gray-100 group shadow-sm hover:shadow-md transition-shadow">
+                        <img src="https://images.unsplash.com/photo-1572635196237-14b3f281503f?auto=format&fit=crop&w=600&q=80" alt="선글라스 2" class="w-full h-64 object-cover group-hover:scale-105 transition-transform duration-300">
+                        <div class="p-5 bg-white"><h4 class="font-bold text-lg text-gray-900">캣아이 패션 선글라스</h4><p class="text-gray-500 text-sm mt-1">볼륨감 있는 엣지 템플 설계로 스타일리시함과 안구 측면 보안 기능을 동시에 제공합니다.</p></div>
+                    </div>
+                    <div class="overflow-hidden rounded-xl bg-gray-100 border border-gray-100 group shadow-sm hover:shadow-md transition-shadow">
+                        <img src="https://images.unsplash.com/photo-1544161513-0179fe746fd5?auto=format&fit=crop&w=600&q=80" alt="선글라스 3" class="w-full h-64 object-cover group-hover:scale-105 transition-transform duration-300">
+                        <div class="p-5 bg-white"><h4 class="font-bold text-lg text-gray-900">스포츠 편광 선글라스</h4><p class="text-gray-500 text-sm mt-1">야외 난반사광을 전면 여과하여 서핑, 등산 등 역동적인 활동에 적합합니다.</p></div>
+                    </div>
+                </div>
+                <!-- Tab 3: Functional Lenses -->
+                <div id="lenses" class="tab-content grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8">
+                    <div class="overflow-hidden rounded-xl bg-gray-100 border border-gray-100 group shadow-sm hover:shadow-md transition-shadow">
+                        <img src="https://images.unsplash.com/photo-1516257984-b1b4d707412e?auto=format&fit=crop&w=600&q=80" alt="기능성 렌즈 1" class="w-full h-64 object-cover group-hover:scale-105 transition-transform duration-300">
+                        <div class="p-5 bg-white">
+                            <h4 class="font-bold text-lg text-gray-900">디지털 블루라이트 차단 렌즈</h4>
+                            <p class="text-gray-500 text-sm mt-1">모니터와 모바일 기기에서 방출되는 유해 청색광 영역을 집중적으로 여과하여 안구 피로를 완화합니다.</p>
+                        </div>
+                    </div>
+                    <div class="overflow-hidden rounded-xl bg-gray-100 border border-gray-100 group shadow-sm hover:shadow-md transition-shadow">
+                        <img src="https://images.unsplash.com/photo-1584622650111-993a426fbf0a?auto=format&fit=crop&w=600&q=80" alt="기능성 렌즈 2" class="w-full h-64 object-cover group-hover:scale-105 transition-transform duration-300">
+                        <div class="p-5 bg-white">
+                            <h4 class="font-bold text-lg text-gray-900">누진 다초점 렌즈</h4>
+                            <p class="text-gray-500 text-sm mt-1"><strong>누진 다초점(Progressive):</strong> 원거리부터 근거리까지 경계선 없이 자연스럽게 초점이 이동하는 중장년 맞춤 다초점 설계 렌즈입니다.</p>
+                        </div>
+                    </div>
+                    <div class="overflow-hidden rounded-xl bg-gray-100 border border-gray-100 group shadow-sm hover:shadow-md transition-shadow">
+                        <img src="https://images.unsplash.com/photo-1532187863486-abf9d39d6618?auto=format&fit=crop&w=600&q=80" alt="기능성 렌즈 3" class="w-full h-64 object-cover group-hover:scale-105 transition-transform duration-300">
+                        <div class="p-5 bg-white">
+                            <h4 class="font-bold text-lg text-gray-900">드라이빙 변색 렌즈</h4>
+                            <p class="text-gray-500 text-sm mt-1">자외선 조사량에 따라 변색 농도가 유기적으로 조절되며 야간 운전 시의 불빛 번짐을 최소화합니다.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 4.5 Counselor (Q&A) Section -->
+    <section id="counselor" class="py-24 bg-[#F8F9FA] border-t border-b border-gray-100">
+        <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center max-w-3xl mx-auto mb-12">
+                <h2 class="text-3xl font-bold tracking-tight text-gray-900 sm:text-4xl">AI 눈 건강 카운셀러</h2>
+                <div class="h-1 w-12 bg-[#007BFF] mx-auto mt-3"></div>
+                <p class="mt-4 text-lg text-gray-500">
+                    실시간 지식 탐색(Grounding)과 전문 검안 로직을 바탕으로, 1:1 눈 건강 맞춤 관리 가이드를 실시간으로 전해 드립니다.
+                </p>
+            </div>
+
+            <!-- Q&A Window Container -->
+            <div class="bg-white rounded-2xl shadow-sm border border-gray-100 overflow-hidden">
+                <!-- Banner header -->
+                <div class="p-6 sm:p-8 border-b border-gray-50 bg-blue-50/40 flex items-center space-x-4">
+                    <div class="w-12 h-12 bg-blue-100 rounded-full flex items-center justify-center text-[#007BFF]">
+                        <i class="fas fa-stethoscope text-xl"></i>
+                    </div>
+                    <div>
+                        <h3 class="font-bold text-gray-900 text-base sm:text-lg">눈 건강 맞춤형 케어 솔루션</h3>
+                        <p class="text-xs sm:text-sm text-gray-500">불편한 증상이나 시력 보정 기술에 대한 질의를 자유롭게 입력하세요.</p>
+                    </div>
+                </div>
+
+                <div class="p-6 sm:p-8 space-y-6">
+                    <!-- Preset Quick Buttons for Great UX -->
+                    <div class="flex flex-wrap gap-2 text-sm">
+                        <span class="text-gray-500 font-semibold self-center mr-1">추천 질문:</span>
+                        <button type="button" onclick="setQuickQuery('노안과 난시가 동시에 오는 경우 렌즈 설계는 어떻게 이루어지나요?')" class="px-3.5 py-1.5 rounded-full bg-gray-100 hover:bg-gray-200 text-gray-700 transition font-medium">노안과 난시 설계</button>
+                        <button type="button" onclick="setQuickQuery('컴퓨터 작업을 많이 하는 스마트폰 사용자의 올바른 안구건조증 예방 생활 수칙을 알려주세요.')" class="px-3.5 py-1.5 rounded-full bg-gray-100 hover:bg-gray-200 text-gray-700 transition font-medium">안구건조증 예방</button>
+                        <button type="button" onclick="setQuickQuery('누진다초점 안경을 처음 맞췄을 때 겪을 수 있는 초기 왜곡 현상과 적응 방법은 무엇인가요?')" class="px-3.5 py-1.5 rounded-full bg-gray-100 hover:bg-gray-200 text-gray-700 transition font-medium">누진다초점 적응</button>
+                    </div>
+
+                    <!-- Input Interface -->
+                    <div class="space-y-4">
+                        <textarea id="counselor-input" rows="4" class="w-full px-4 py-3 border border-gray-300 rounded-xl focus:outline-none focus:ring-2 focus:ring-[#007BFF] focus:border-transparent resize-none bg-white placeholder-gray-400 text-sm sm:text-base leading-relaxed" placeholder="현재 시야의 불편함이나 안과/안경 광학에 관한 궁금한 사항을 자유롭게 기재해 주세요. (예: 저녁만 되면 유독 눈 침침함이 심해집니다.)"></textarea>
+                        <div class="flex justify-end">
+                            <button type="button" id="counselor-submit" onclick="submitCounselorQuery()" class="px-6 py-3.5 bg-[#007BFF] hover:bg-[#0062cc] text-white font-bold rounded-lg transition-all duration-200 shadow-md flex items-center space-x-2">
+                                <i class="fas fa-paper-plane"></i>
+                                <span>상담 요청하기</span>
+                            </button>
+                        </div>
+                    </div>
+
+                    <!-- Loading Spinner -->
+                    <div id="counselor-loading" class="hidden flex flex-col items-center justify-center py-12 space-y-3">
+                        <div class="animate-spin rounded-full h-10 w-10 border-b-2 border-[#007BFF]"></div>
+                        <p class="text-sm text-gray-500 font-medium">실시간 웹 정보 검증 및 개인 맞춤형 소견서를 조제하고 있습니다...</p>
+                    </div>
+
+                    <!-- Error Notice -->
+                    <div id="counselor-error" class="hidden p-4 rounded-xl bg-red-50 text-red-700 border border-red-100 flex items-start space-x-2 text-sm">
+                        <i class="fas fa-exclamation-circle mt-0.5 flex-shrink-0"></i>
+                        <div>
+                            <span class="font-bold">응답 생성 오류:</span>
+                            <span id="counselor-error-msg">연결망 상태를 체크해 주세요.</span>
+                        </div>
+                    </div>
+
+                    <!-- Dynamic Response Box -->
+                    <div id="counselor-result-box" class="hidden space-y-6 pt-6 border-t border-gray-100">
+                        <div class="bg-[#F8F9FA] rounded-xl p-6 sm:p-8 border border-gray-100">
+                            <h4 class="font-bold text-gray-900 mb-4 flex items-center space-x-2">
+                                <span class="w-1.5 h-4 bg-[#007BFF] rounded-full"></span>
+                                <span class="text-base">안경사 전담 카운셀링 소견</span>
+                            </h4>
+                            <!-- Render Content applying rich markdown styles -->
+                            <div id="counselor-response-text" class="markdown-rendered text-gray-700 font-medium">
+                                <!-- Generated response in parsed markdown HTML goes here -->
+                            </div>
+                        </div>
+
+                        <!-- Real-time Verification Sources (Grounding) -->
+                        <div id="counselor-sources" class="hidden">
+                            <h5 class="text-xs font-bold text-gray-400 uppercase tracking-wider mb-2">실시간 검증 정보 출처 및 근거 자료</h5>
+                            <ul id="counselor-sources-list" class="space-y-1 text-xs text-[#007BFF] font-medium">
+                                <!-- Grounding attributions injected here -->
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 5. Services Section -->
+    <section id="services" class="py-24 bg-white">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center max-w-3xl mx-auto mb-16">
+                <h2 class="text-3xl font-bold tracking-tight text-gray-900 sm:text-4xl">서비스</h2>
+                <div class="h-1 w-12 bg-[#007BFF] mx-auto mt-3"></div>
+                <p class="mt-4 text-lg text-gray-500">체계적인 단계별 프로세스를 거쳐 오직 한 사람만을 위한 완벽한 시각 환경을 선사합니다.</p>
+            </div>
+
+            <!-- Upper: Step-by-step Exam Process -->
+            <div class="mb-20">
+                <h3 class="text-xl font-bold text-gray-900 mb-8 text-center md:text-left">정밀 검안 프로세스</h3>
+                <div class="grid grid-cols-1 md:grid-cols-4 gap-6 relative">
+                    <!-- Step 1 -->
+                    <div class="bg-[#F8F9FA] p-6 rounded-xl border border-gray-100 shadow-sm relative">
+                        <div class="text-xs font-bold text-[#007BFF] uppercase tracking-wider mb-2">Step 01</div>
+                        <div class="flex items-center space-x-3 mb-3">
+                            <i class="fas fa-eye text-[#007BFF] text-xl"></i>
+                            <h4 class="text-lg font-bold text-gray-900">시력 검사</h4>
+                        </div>
+                        <p class="text-gray-600 text-sm">기본 시력 테스트와 정밀 굴절 검사(눈의 망막에 상이 맺히는 초점 편차를 측정하는 검사)를 수행합니다.</p>
+                    </div>
+                    <!-- Step 2 -->
+                    <div class="bg-[#F8F9FA] p-6 rounded-xl border border-gray-100 shadow-sm relative">
+                        <div class="text-xs font-bold text-[#007BFF] uppercase tracking-wider mb-2">Step 02</div>
+                        <div class="flex items-center space-x-3 mb-3">
+                            <i class="fas fa-comments text-[#007BFF] text-xl"></i>
+                            <h4 class="text-lg font-bold text-gray-900">라이프스타일 상담</h4>
+                        </div>
+                        <p class="text-gray-600 text-sm">업무 형태, 스마트 기기 사용빈도, 운전 빈도 등 실제 야외 및 실내 환경을 종합 분석합니다.</p>
+                    </div>
+                    <!-- Step 3 -->
+                    <div class="bg-[#F8F9FA] p-6 rounded-xl border border-gray-100 shadow-sm relative">
+                        <div class="text-xs font-bold text-[#007BFF] uppercase tracking-wider mb-2">Step 03</div>
+                        <div class="flex items-center space-x-3 mb-3">
+                            <i class="fas fa-glasses text-[#007BFF] text-xl"></i>
+                            <h4 class="text-lg font-bold text-gray-900">맞춤 렌즈 추천</h4>
+                        </div>
+                        <p class="text-gray-600 text-sm">수집된 신체 광학 측정값과 일상 습관에 부합하는 제품 두께와 필터 사양을 매칭하여 제안합니다.</p>
+                    </div>
+                    <!-- Step 4 -->
+                    <div class="bg-[#F8F9FA] p-6 rounded-xl border border-gray-100 shadow-sm relative">
+                        <div class="text-xs font-bold text-[#007BFF] uppercase tracking-wider mb-2">Step 04</div>
+                        <div class="flex items-center space-x-3 mb-3">
+                            <i class="fas fa-tools text-[#007BFF] text-xl"></i>
+                            <h4 class="text-lg font-bold text-gray-900">정밀 피팅</h4>
+                        </div>
+                        <p class="text-gray-600 text-sm">안경 착용 시 흘러내림이나 관자놀이 압박이 가지 않도록 해부학적 구조에 맞춰 조율합니다.</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Lower: Personalized Fitting Service -->
+            <div class="bg-[#F8F9FA] rounded-2xl p-8 md:p-12 border border-gray-100 shadow-sm">
+                <div class="max-w-3xl mx-auto text-center">
+                    <h3 class="text-2xl font-bold text-gray-900 mb-6">개인별 1:1 커스텀 피팅 서비스</h3>
+                    <div class="flex justify-center items-center space-x-8 md:space-x-16 mb-8 text-gray-500">
+                        <div class="flex flex-col items-center">
+                            <div class="w-14 h-14 bg-white rounded-full flex items-center justify-center text-[#007BFF] mb-2 shadow-sm border border-gray-100">
+                                <i class="fas fa-smile text-xl"></i>
+                            </div>
+                            <span class="text-sm font-medium">얼굴형 분석</span>
+                        </div>
+                        <div class="flex flex-col items-center">
+                            <div class="w-14 h-14 bg-white rounded-full flex items-center justify-center text-[#007BFF] mb-2 shadow-sm border border-gray-100">
+                                <i class="fas fa-deaf text-xl"></i>
+                            </div>
+                            <span class="text-sm font-medium">귀 높이 보정</span>
+                        </div>
+                        <div class="flex flex-col items-center">
+                            <div class="w-14 h-14 bg-white rounded-full flex items-center justify-center text-[#007BFF] mb-2 shadow-sm border border-gray-100">
+                                <svg class="w-6 h-6 text-[#007BFF]" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" stroke-width="2">
+                                  <path d="M3 12h3m12 0h3M6 12a3 3 0 0 0 6 0m0 0a3 3 0 0 0 6 0M9 12c0-2.5 1.5-4 3-4s3 1.5 3 4" />
+                                </svg>
+                            </div>
+                            <span class="text-sm font-medium">코 모양 맞춤</span>
+                        </div>
+                    </div>
+                    <p class="text-base md:text-lg text-gray-700 leading-relaxed font-medium">
+                        "고객의 개별적인 안면 구조와 미세 비대칭까지 정밀 계측하여 조율하는 <span class="text-[#007BFF] font-bold">맞춤형 피팅</span>을 통해, 장시간 착용에도 흘러내리지 않으면서 가벼운 착용 감각과 극대화된 시야 해상도를 약속합니다."
+                    </p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 6. Booking & Location Section -->
+    <section id="booking" class="py-24 bg-white">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center max-w-3xl mx-auto mb-16">
+                <h2 class="text-3xl font-bold tracking-tight text-gray-900 sm:text-4xl">예약 및 오시는 길</h2>
+                <div class="h-1 w-12 bg-[#007BFF] mx-auto mt-3"></div>
+                <p class="mt-4 text-lg text-gray-500">기다림 없이 빠르고 정확한 1:1 전담 시각 측정 서비스를 예약하실 수 있습니다.</p>
+            </div>
+
+            <!-- 2-Column Split Layout -->
+            <div class="grid grid-cols-1 lg:grid-cols-2 gap-12 items-start">
+                <!-- Left Column: Booking Form & Info -->
+                <div class="space-y-8">
+                    <div class="bg-[#F8F9FA] rounded-2xl p-6 sm:p-8 border border-gray-100 shadow-sm">
+                        <h3 class="text-xl font-bold text-gray-900 mb-6">방문 예약하기</h3>
+                        <form id="appointment-form" class="space-y-4">
+                            <div>
+                                <label for="user-name" class="block text-sm font-medium text-gray-700 mb-1">성함</label>
+                                <input type="text" id="user-name" required class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-[#007BFF] focus:border-transparent bg-white" placeholder="홍길동">
+                            </div>
+                            <div>
+                                <label for="user-phone" class="block text-sm font-medium text-gray-700 mb-1">연락처</label>
+                                <input type="tel" id="user-phone" required class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-[#007BFF] focus:border-transparent bg-white" placeholder="010-0000-0000">
+                            </div>
+                            <div>
+                                <label for="booking-date" class="block text-sm font-medium text-gray-700 mb-1">방문 일자 및 시간</label>
+                                <input type="datetime-local" id="booking-date" required class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-[#007BFF] focus:border-transparent bg-white">
+                            </div>
+                            <button type="submit" class="w-full bg-[#007BFF] hover:bg-[#0062cc] text-white font-bold py-3.5 px-4 rounded-lg transition-colors duration-200 shadow-md">
+                                예약 신청하기
+                            </button>
+                        </form>
+                    </div>
+
+                    <!-- Store Contact & Hours Info -->
+                    <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                        <div class="flex items-start space-x-4 p-5 bg-white border border-gray-100 rounded-xl shadow-sm">
+                            <div class="flex-shrink-0 text-[#007BFF] text-xl mt-1">
+                                <i class="fas fa-phone-alt"></i>
+                            </div>
+                            <div>
+                                <h4 class="font-bold text-gray-900">매장 연락처</h4>
+                                <p class="text-gray-600 mt-1 text-sm md:text-base font-semibold">02-362-4680</p>
+                            </div>
+                        </div>
+                        <div class="flex items-start space-x-4 p-5 bg-white border border-gray-100 rounded-xl shadow-sm">
+                            <div class="flex-shrink-0 text-[#007BFF] text-xl mt-1">
+                                <i class="fas fa-clock"></i>
+                            </div>
+                            <div>
+                                <h4 class="font-bold text-gray-900">운영 시간</h4>
+                                <p class="text-gray-600 mt-1 text-sm md:text-base font-semibold">평일: 오전 9시 ~ 오후 7시</p>
+                                <p class="text-gray-400 text-xs mt-0.5">주말 및 공휴일 휴무</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Right Column: Google Maps iframe -->
+                <div class="w-full h-[450px] lg:h-[480px] bg-gray-100 rounded-2xl overflow-hidden shadow-sm border border-gray-100 relative">
+                    <iframe 
+                        src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3165.1765039322306!2d126.89531861234976!3d37.48135252877546!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x357c9e3bc8eb0c3f%3A0x6b77242ba45a2cc!2z7ISc7Jq47Yq567OE7IucIOq1rOuhnCDrj savoryw6roZwgMjQz!5e0!3m2!1sko!2skr!4v1710000000000!5m2!1sko!2skr" 
+                        class="absolute inset-0 w-full h-full border-0"
+                        allowfullscreen="" 
+                        loading="lazy" 
+                        referrerpolicy="no-referrer-when-downgrade">
+                    </iframe>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 7. Footer Section -->
+    <footer class="bg-[#333333] text-gray-400 py-12 border-t border-gray-800">
+        <div class="max-w-7xl mx-auto px-4 text-center text-sm">
+            <p class="font-semibold text-white mb-2">성민안경</p>
+            <p class="mb-4 text-gray-500">서울특별시 구로구 디지털로 243 | 대표번호: 02-362-4680</p>
+            <p>&copy; 2026 성민안경. All rights reserved.</p>
+        </div>
+    </footer>
+
+    <!-- Custom Modal for Booking Confirmation -->
+    <div id="booking-modal" class="fixed inset-0 z-[100] flex items-center justify-center bg-black/50 hidden transition-all duration-300">
+        <div class="bg-white rounded-2xl p-6 max-w-sm w-full mx-4 shadow-xl text-center">
+            <div class="w-12 h-12 bg-blue-50 text-[#007BFF] rounded-full flex items-center justify-center mx-auto mb-4">
+                <i class="fas fa-check text-xl"></i>
+            </div>
+            <h3 class="text-lg font-bold text-gray-900 mb-2">예약 신청 완료</h3>
+            <p class="text-gray-600 text-sm mb-6">성민안경 방문 예약이 성공적으로 접수되었습니다. 곧 확정 안내 문자가 전송됩니다.</p>
+            <button id="close-modal-btn" class="w-full py-3 bg-[#007BFF] hover:bg-[#0062cc] text-white font-medium rounded-lg transition-colors">확인</button>
+        </div>
+    </div>
+
+    <!-- Interactive JavaScript Implementation -->
+    <script>
+        // 1. Responsive Mobile Menu Toggle
+        const mobileMenuBtn = document.getElementById('mobile-menu-btn');
+        const mobileMenu = document.getElementById('mobile-menu');
+
+        mobileMenuBtn.addEventListener('click', () => {
+            mobileMenu.classList.toggle('hidden');
+        });
+
+        const mobileLinks = mobileMenu.querySelectorAll('a');
+        mobileLinks.forEach(link => {
+            link.addEventListener('click', () => {
+                mobileMenu.classList.add('hidden');
+            });
+        });
+
+        // 2. Tab UI Functionality with Fade-in Effect for Products Section
+        const tabButtons = document.querySelectorAll('.tab-btn');
+        const tabContents = document.querySelectorAll('.tab-content');
+
+        tabButtons.forEach(button => {
+            button.addEventListener('click', () => {
+                const targetTabId = button.getAttribute('data-tab');
+
+                tabButtons.forEach(btn => {
+                    btn.classList.remove('bg-white', 'text-gray-900', 'shadow-sm');
+                    btn.classList.add('text-gray-500', 'hover:text-gray-900');
+                });
+                button.classList.remove('text-gray-500', 'hover:text-gray-900');
+                button.classList.add('bg-white', 'text-gray-900', 'shadow-sm');
+
+                tabContents.forEach(content => {
+                    if (content.id === targetTabId) {
+                        content.classList.add('active');
+                        setTimeout(() => {
+                            content.style.opacity = '1';
+                        }, 50);
+                    } else {
+                        content.style.opacity = '0';
+                        content.classList.remove('active');
+                    }
+                });
+            });
+        });
+
+        // Initialize opacity for default active tab content
+        document.addEventListener('DOMContentLoaded', () => {
+            const activeTab = document.querySelector('.tab-content.active');
+            if (activeTab) {
+                activeTab.style.opacity = '1';
+            }
+        });
+
+        // 3. Custom Modal Handler for Form Submission
+        const appointmentForm = document.getElementById('appointment-form');
+        const bookingModal = document.getElementById('booking-modal');
+        const closeModalBtn = document.getElementById('close-modal-btn');
+
+        appointmentForm.addEventListener('submit', (e) => {
+            e.preventDefault();
+            bookingModal.classList.remove('hidden');
+        });
+
+        closeModalBtn.addEventListener('click', () => {
+            bookingModal.classList.add('hidden');
+            appointmentForm.reset();
+        });
+
+        bookingModal.addEventListener('click', (e) => {
+            if (e.target === bookingModal) {
+                bookingModal.classList.add('hidden');
+                appointmentForm.reset();
+            }
+        });
+
+        // 4. Counselor Section Logic (Calling Safe Vercel Serverless Function Proxy)
+        function setQuickQuery(text) {
+            document.getElementById('counselor-input').value = text;
+            document.getElementById('counselor-input').focus();
+        }
+
+        async function submitCounselorQuery() {
+            const inputEl = document.getElementById('counselor-input');
+            const submitBtn = document.getElementById('counselor-submit');
+            const loadingEl = document.getElementById('counselor-loading');
+            const errorEl = document.getElementById('counselor-error');
+            const errorMsgEl = document.getElementById('counselor-error-msg');
+            const resultBoxEl = document.getElementById('counselor-result-box');
+            const responseTextEl = document.getElementById('counselor-response-text');
+            const sourcesEl = document.getElementById('counselor-sources');
+            const sourcesListEl = document.getElementById('counselor-sources-list');
+
+            const query = inputEl.value.trim();
+            if (!query) {
+                alert('안구 불편사항 혹은 관리 질문을 먼저 작성해 주세요.');
+                return;
+            }
+
+            // UI Reset
+            errorEl.classList.add('hidden');
+            resultBoxEl.classList.add('hidden');
+            sourcesEl.classList.add('hidden');
+            loadingEl.classList.remove('hidden');
+            submitBtn.disabled = true;
+            submitBtn.classList.add('opacity-50');
+
+            try {
+                // Call the local serverless endpoint instead of the direct external Gemini API url.
+                // This shields the API key entirely on the server-side environment.
+                const response = await fetch('/api/counselor', {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({ query: query })
+                });
+
+                if (!response.ok) {
+                    const errData = await response.json();
+                    throw new Error(errData.error || `네트워크 오류가 발생했습니다. (상태 코드: ${response.status})`);
+                }
+
+                const data = await response.json();
+                const text = data.text;
+
+                if (!text) {
+                    throw new Error("소견서 발급 과정에서 빈 데이터가 반환되었습니다.");
+                }
+
+                // Render dynamic markdown text to HTML securely using marked library
+                responseTextEl.innerHTML = marked.parse(text);
+
+                // Handle grounding metadata sources if returned
+                if (data.sources && data.sources.length > 0) {
+                    sourcesListEl.innerHTML = '';
+                    data.sources.forEach(source => {
+                        const li = document.createElement('li');
+                        li.className = 'flex items-center space-x-1.5 hover:underline transition-all';
+                        li.innerHTML = `
+                            <i class="fas fa-external-link-alt text-[10px] text-blue-400"></i>
+                            <a href="${source.uri}" target="_blank" rel="noopener noreferrer">${source.title}</a>
+                        `;
+                        sourcesListEl.appendChild(li);
+                    });
+                    sourcesEl.classList.remove('hidden');
+                }
+
+                resultBoxEl.classList.remove('hidden');
+
+            } catch (err) {
+                errorEl.classList.remove('hidden');
+                errorMsgEl.textContent = err.message || '네트워크 서버 상태를 체크 중입니다. 잠시 후 시도해 주시기 바랍니다.';
+            } finally {
+                loadingEl.classList.add('hidden');
+                submitBtn.disabled = false;
+                submitBtn.classList.remove('opacity-50');
+            }
+        }
+    </script>
+</body>
+</html>
